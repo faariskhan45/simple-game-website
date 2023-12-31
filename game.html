@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Guess the Number Game</title>
+  <style>
+    /* Styling for the game */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    #result {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<style>
+    body {
+      background-image: url('bg.jpeg');
+      background-repeat: no-repeat;
+      background-attachment: fixed; 
+      background-size: 100% 100%;
+    }
+    </style>
+  <h1>Guess the Number Game</h1>
+  <p>Guess a number between 1 and 100:</p>
+  <input type="number" id="guess" min="1" max="100">
+  <button onclick="checkGuess()">Submit Guess</button>
+  <p id="result"></p>
+
+  <script>
+    // JavaScript logic for the game
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    let attempts = 0;
+
+    function checkGuess() {
+      const guessedNumber = parseInt(document.getElementById('guess').value);
+      const resultParagraph = document.getElementById('result');
+
+      if (isNaN(guessedNumber) || guessedNumber < 1 || guessedNumber > 100) {
+        resultParagraph.textContent = 'Please enter a valid number between 1 and 100.';
+        return;
+      }
+
+      attempts++;
+
+      if (guessedNumber === randomNumber) {
+        resultParagraph.textContent = `Congratulations! You guessed the number ${randomNumber} correctly in ${attempts} attempts!`;
+      } else if (guessedNumber < randomNumber) {
+        resultParagraph.textContent = 'Try a higher number.';
+      } else {
+        resultParagraph.textContent = 'Try a lower number.';
+      }
+    }
+  </script>
+</body>
+</html>
